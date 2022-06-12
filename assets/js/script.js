@@ -27,6 +27,19 @@ const updateScreen = (number) => {
   calculatorScreen.value = number;
 };
 
+const percentage = document.querySelector(".percentage");
+percentage.addEventListener("click", () => {
+  inputPercentage();
+  updateScreen(currentNumber);
+});
+
+const inputPercentage = () => {
+  if (currentNumber.includes("%")) {
+    return;
+  }
+  currentNumber = currentNumber / 100;
+};
+
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
   operator.addEventListener("click", (event) => {
@@ -48,6 +61,7 @@ equalSign.addEventListener("click", () => {
   } else {
     calculate();
     updateScreen(currentNumber);
+    clearAll();
   }
 });
 
