@@ -10,7 +10,7 @@ numbers.forEach((number) => {
     // console.log("number is pressed");
     // console.log(event.target.value);
     inputNumber(event.target.value);
-    updateScreen(currentNumber);
+    updateScreen(prevNumber + calculationOperator + currentNumber);
   });
 });
 
@@ -44,24 +44,27 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
   operator.addEventListener("click", (event) => {
     inputOperator(event.target.value);
+    updateScreen(prevNumber + calculationOperator + currentNumber);
+    // console.log(event.target.value);
   });
 });
 const inputOperator = (operator) => {
   prevNumber = currentNumber;
   calculationOperator = operator;
   currentNumber = "";
+  updateScreen(prevNumber + calculationOperator);
 };
 
 const equalSign = document.querySelector(".equal-sign");
 
 equalSign.addEventListener("click", () => {
   //   console.log("equal button is pressed");
-  if (prevNumber === "") {
-    return;
+  if (currentNumber === "") {
+    return alert("Format Not Valid ");
   } else {
     calculate();
     updateScreen(currentNumber);
-    clearAll();
+    // clearAll();
   }
 });
 
